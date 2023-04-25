@@ -68,7 +68,7 @@ public class HuffmanCodeTree {
         HuffmanNode node = root;
         StringBuilder output = new StringBuilder();
 
-        for (int i = 0; i < s.size(); i++) {
+        for (int i = 0; i <= s.size(); i++) {
             if (node.isLeaf()) {
                 output.append(node.getData());
                 node = root;
