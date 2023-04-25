@@ -28,7 +28,7 @@ public class HuffmanCodeTree {
      * @return true if the code tree is valid and false if it is not (boolean).
      */
     public boolean isValid() {
-        return root.isValidNode();
+        return root.isValidTree();
     }
 
     /**

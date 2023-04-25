@@ -82,7 +82,7 @@ public class HuffmanNode {
         if (isLeaf() && isValidNode()) {
             return true;
         } else if (isValidNode() && getZero().isValidNode() && getOne().isValidNode()) {
-            return true;
+            return zero.isValidTree() && one.isValidTree();
         } else {
             return false;
         }

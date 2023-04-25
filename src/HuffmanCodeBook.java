@@ -66,6 +66,24 @@ public class HuffmanCodeBook {
     }
 
     /**
+     *
+     * @return the size of the HuffmanCodebook (int)
+     */
+    public int getSize() {
+        return size;
+    }
+
+    /**
+     *
+     * @param index the index at which a characted should be located (int)
+     * @return A character from the HuffmanCodebook at a certain index (char).
+     */
+    public char getChar(int index) {
+        return characters[index];
+    }
+
+
+    /**
      * Gets the BinarySequence encoding for a given letter from the codebook.
      * @param c the letter being used to find its encoding sequence (char).
      * @return the BinarySequence encoding of the letter if it is in the code book or null if it is not in the code book.
