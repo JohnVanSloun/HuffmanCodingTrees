@@ -33,6 +33,52 @@ public class HuffmanCodeBook {
         characters[size] = c;
         sequences[size] = seq;
         size++;
+
+        sortData();
+    }
+
+    /**
+     * sorts the data in the codebook upon new data being added
+     */
+    private void sortData() {
+        char tempChar;
+        BinarySequence tempSeq;
+        for (int i = size-1; i > 0; i--) {
+            if (characters[i] < characters[i-1]) {
+                tempChar = characters[i-1];
+                characters[i-1] = characters[i];
+                characters[i] = tempChar;
+
+                tempSeq = sequences[i-1];
+                sequences[i-1] = sequences[i];
+                sequences[i] = tempSeq;
+            }
+        }
+    }
+
+    /**
+     * Searches for the index of a character contained in the codebook
+     * @param c the character being searched for (char).
+     * @return the index of the character if it is found or -1 if not found (int).
+     */
+    private int search(char c) {
+        int left = 0;
+        int right = size-1;
+        int middle = (right + left) / 2;
+
+        while (left <= right) {
+            if (c == characters[middle]) {
+                return middle;
+            } else if (c < characters[middle]) {
+                right = middle - 1;
+                middle = (right + left) / 2;
+            } else {
+                left = middle + 1;
+                middle = (right + left) / 2;
+            }
+        }
+
+        return -1;
     }
 
     /**
@@ -41,13 +87,7 @@ public class HuffmanCodeBook {
      * @return true if the letter is contained in the code book and false if not.
      */
     public boolean contains(char letter) {
-        for (int i = 0; i < size; i++) {
-            if (characters[i] == letter) {
-                return true;
-            }
-        }
-
-        return false;
+        return search(letter) > -1;
     }
 
     /**
@@ -89,13 +129,13 @@ public class HuffmanCodeBook {
      * @return the BinarySequence encoding of the letter if it is in the code book or null if it is not in the code book.
      */
     public BinarySequence getSequence(char c) {
-        for (int i = 0; i < size; i++) {
-            if (characters[i] == c){
-                return sequences[i];
-            }
-        }
+        int index = search(c);
 
-        return null;
+        if (index > -1) {
+            return sequences[index];
+        } else {
+            return null;
+        }
     }
 
     /**
